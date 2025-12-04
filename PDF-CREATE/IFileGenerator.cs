@@ -8,6 +8,8 @@ public interface IFileGenerator
     byte[] GeneratePdf(Action<IDocumentContainer> design);
 }
 
+
+
 public class QuestPdfGenerator : IFileGenerator
 {
     public byte[] GeneratePdf(Action<IDocumentContainer> design)

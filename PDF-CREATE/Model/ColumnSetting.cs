@@ -1,5 +1,7 @@
 ﻿namespace PDF_CREATE.Model;
 
+#nullable disable
+
 public enum PdfDirection
 {
     RTL,
@@ -26,27 +28,27 @@ public class ColumnSetting
 
 public class PdfDocumentTextSettings
 {
-    public string Watermark { get; set; } = "cloudacc.mahaksoft.com";
-    public string HeaderTop { get; set; } = "dev3";
-    public string HeaderTitle { get; set; } = "سند حسابداری";
+    public string Watermark { get; set; }
+    public string HeaderTop { get; set; }
+    public string HeaderTitle { get; set; } 
 
-    public string VoucherStatus { get; set; } = "وضعیت سند: موقت";
-    public string VoucherNumber { get; set; } = "شماره سند: ۱";
-    public string VoucherDate { get; set; } = "تاریخ سند: ۱۴۰۳/۰۲/۲۳";
+    public string VoucherStatus { get; set; }
+    public string VoucherNumber { get; set; }
+    public string VoucherDate { get; set; }
 
-    public string DescriptionTitle { get; set; } = "شرح سند:";
-    public string DescriptionText { get; set; } = "توضیحات نمونه...";
+    public string DescriptionTitle { get; set; }
+    public string DescriptionText { get; set; }
 
-    public string FooterText { get; set; } = "Page ";
+    public string FooterText { get; set; }
 }
 
 public class PdfTableSettings
 {
-    public bool Landscape { get; set; } = true;
-    public string FontName { get; set; } = "B Nazanin";
-    public PdfDirection Direction { get; set; } = PdfDirection.RTL;
+    public bool Landscape { get; set; } 
+    public string FontName { get; set; }
+    public PdfDirection Direction { get; set; } 
 
-    public float BaseFontSize { get; set; } = 12;
+    public float BaseFontSize { get; set; }
 
     public List<ColumnSetting> Columns { get; set; } = new();
     public string[][] Rows { get; set; }
