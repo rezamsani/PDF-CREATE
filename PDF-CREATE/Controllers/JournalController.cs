@@ -22,7 +22,8 @@ public class JournalController : ControllerBase
         var journalRows = GetJournalRowList();
         var settings = CreateSettings(journalRows);
 
-        var pdf = _generator.GeneratePdf(doc =>
+        // تولید PDF به صورت byte[]
+        var pdfBytes = _generator.GeneratePdf(doc =>
         {
             doc.Page(page =>
             {
@@ -43,8 +44,22 @@ public class JournalController : ControllerBase
             });
         });
 
-        return File(pdf, "application/pdf", "Journal.pdf");
+        // مسیر ذخیره‌سازی روی دیسک
+        string dir = @"C:\Users\r.meshkisani\Desktop\Temp-Done";
+
+        // اگر مسیر وجود نداشت ایجادش کن
+        if (!Directory.Exists(dir))
+            Directory.CreateDirectory(dir);
+
+        // نام فایل یکتا
+        string filePath = Path.Combine(dir, $"{Guid.NewGuid()}.pdf");
+
+        // ذخیره pdf روی دیسک
+        System.IO.File.WriteAllBytes(filePath, pdfBytes);
+
+        return Ok($"Saved to: {filePath}");
     }
+
 
     // ---------------------------------------------------------------------
     private static void BuildWatermark(PageDescriptor page, PdfTableSettings settings)
