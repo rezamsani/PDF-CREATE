@@ -1,5 +1,4 @@
 using PDF_CREATE;
-using QuestPDF.Drawing;
 using QuestPDF.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,12 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-QuestPDF.Settings.License = LicenseType.Community;
-
-// register Persian font
-FontManager.RegisterFont(
-    File.OpenRead("fonts/B_NAZANIN/B-NAZANIN.TTF")
-);
+builder.AddQuestPdfWithFonts();
 
 builder.Services.AddScoped<IFileGenerator, QuestPdfGenerator>();
 var app = builder.Build();

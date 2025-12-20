@@ -2,6 +2,7 @@
 using PDF_CREATE.Model;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PDF_CREATE.Controllers;
 
@@ -10,7 +11,6 @@ namespace PDF_CREATE.Controllers;
 public class JournalController : ControllerBase
 {
     private readonly IFileGenerator _generator;
-
     public JournalController(IFileGenerator generator)
     {
         _generator = generator;
@@ -77,7 +77,7 @@ public class JournalController : ControllerBase
         {
             col.Item().AlignCenter().Element(e =>
             {
-                var path = "logo.png";
+                var path = "Assets/Images/logo.PNG";
                 var bytes = System.IO.File.ReadAllBytes(path);
                 var img = QuestPDF.Infrastructure.Image.FromBinaryData(bytes);
                 e.Width(80).Height(80).Image(img).FitArea();
@@ -303,7 +303,7 @@ public class JournalController : ControllerBase
         return new PdfTableSettings
         {
             Landscape = true,
-            FontName = "B Nazanin",
+            FontName = "B NAZANIN",
             Direction = PdfDirection.RTL,
             BaseFontSize = 20,
             Text = DefaultTextSettings(),
